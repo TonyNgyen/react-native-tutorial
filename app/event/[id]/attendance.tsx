@@ -14,7 +14,6 @@ export default function EventAttendance() {
   useEffect(() => {
     fetchAttendees();
   }, [id]);
-  console.log(attendees);
   return (
     <>
       <FlatList

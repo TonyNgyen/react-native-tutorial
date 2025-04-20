@@ -2,13 +2,15 @@ import dayjs from 'dayjs';
 import { useLocalSearchParams, Stack, Link } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Text, View, Image, Pressable, ActivityIndicator } from 'react-native';
+import SupaImage from "~/components/SupaImage";
 import { useAuth } from '~/contexts/AuthProvider';
+import { Attedance, Event } from '~/types/db';
 import { supabase } from '~/utils/supabase';
 
 export default function EventPage() {
   const { id } = useLocalSearchParams();
-  const [event, setEvent] = useState(null);
-  const [attendance, setAttendance] = useState(null);
+  const [event, setEvent] = useState<Event | null>(null);
+  const [attendance, setAttendance] = useState<Attedance | null>(null);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
 
@@ -55,12 +57,12 @@ export default function EventPage() {
           headerTintColor: 'black',
         }}
       />
-      <Image source={{ uri: event.image_uri }} className="aspect-video w-full rounded-xl" />
+      <SupaImage path={event.image_uri} className="aspect-video w-full rounded-xl" />
       <Text className="text-3xl font-bold" numberOfLines={2}>
         {event.title}
       </Text>
       <Text className="text-lg font-semibold uppercase text-amber-800">
-        {dayjs(event.datetime).format('ddd, D MMM')} · {dayjs(event.datetime).format('h:mm A')}
+        {dayjs(event.date).format('ddd, D MMM')} · {dayjs(event.date).format('h:mm A')}
       </Text>
       <Text className="text-lg" numberOfLines={2}>
         {event.description}

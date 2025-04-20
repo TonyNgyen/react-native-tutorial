@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import { Link } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { supabase } from '~/utils/supabase';
+import SupaImage from './SupaImage';
 
 export default function EventListItem({ event }) {
   const [numberOfAttendees, setNumberOfAttendees] = useState(0);
@@ -33,7 +34,9 @@ export default function EventListItem({ event }) {
           </View>
 
           {/* Event image */}
-          <Image source={{ uri: event.image_uri }} className="aspect-video w-2/5 rounded-xl" />
+          {event.image_uri && (
+            <SupaImage className="aspect-video w-2/5 rounded-xl" path={event.image_uri} />
+          )}
         </View>
         {/* Footer */}
         <View className="flex-row gap-3">
