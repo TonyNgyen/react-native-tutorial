@@ -19,6 +19,7 @@ export default function EventListItem({ event }) {
   useEffect(() => {
     fetchNumberOfAttendees();
   }, [event.id]);
+  console.log(event);
   return (
     <Link href={`/event/${event.id}`} asChild>
       <Pressable className="m-3 gap-3 border-b-2 border-gray-100 pb-3">
@@ -40,7 +41,9 @@ export default function EventListItem({ event }) {
         </View>
         {/* Footer */}
         <View className="flex-row gap-3">
-          <Text className="mr-auto text-gray-700">{numberOfAttendees} going</Text>
+          <Text className="mr-auto text-gray-700">
+            {numberOfAttendees} going · {Math.floor(event["dist_meters"]/ 1000)} km from you
+          </Text>
           <Feather name="share" size={20} color="gray" />
           <Feather name="bookmark" size={20} color="gray" />
         </View>

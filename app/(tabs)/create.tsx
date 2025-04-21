@@ -35,7 +35,7 @@ export default function CreateEventPage() {
           date: date.toISOString(),
           user_id: user.id,
           image_uri: imageUrl,
-          location_point: 'POINT(32.85 -117.22)'
+          location_point: 'POINT(-117.22 32.85)'
         },
       ])
       .select()
